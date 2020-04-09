@@ -1,0 +1,17 @@
+name: Publish Docker
+on: 
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: akkeris/akkeris-404-page
+        username: ${{ secrets.DockerUser }}
+        password: ${{ secrets.DockerPassword }}
+        tag_names: true
+
